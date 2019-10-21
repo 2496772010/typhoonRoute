@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 指定工作空间，要与接口名相同，源代码没有去看，猜测应该是通过"这里的namespace.
+下边方法的id"来定位方法的 -->
+<mapper namespace="com.example.typhoon.mapper.TpMapper">
+<!--    resultMap用于设置返回值类型-->
+    <resultMap id="tpEntity" type="com.example.typhoon.bean.TpEntity">
+        <id column="id" property="id"/>
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="movedirecti" property="movedirection"/>
+        <result column="power" property="power"/>
+        <result column="pressure" property="pressure"/>
+        <result column="speed" property="speed"/>
+        <result column="strong" property="strong"/>
+        <result column="name" property="name"/>
+        <result column="centerlat" property="centerlat"/>
+        <result column="time_number" property="timeNumber"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.example.typhoon.bean.TpEntity" >
+        insert into typhoondata1(lat, lng, movedirecti, movespeed, power, pressure, speed, strong, name, centerlat, centerlng, time, time_number)
+        values(#{lat},#{lng},#{movedirection},#{movespeed},#{power},#{pressure},#{speed},#{strong},#{name},#{centerlat},#{centerlng},#{time},#{time_mumber});
+    </insert>
+    <select id="selectTp" resultMap="tpEntity">
+       select * from typhoondata1 where name=#{name} order by time
+</select>
+</mapper>
